@@ -1,332 +1,131 @@
 // pages/index.js
-import Head from "next/head";
-import { useEffect, useMemo, useState } from "react";
-
-/**
- * Pierre Amazon Picks — Demo storefront
- * - 200 demo items (mixed categories)
- * - Tabs: Featured + categories
- * - Search filter
- * - Lazy images
- * - Buy button includes affiliate tag: pierre121-20
- *
- * NOTE: These are demo items generated locally. Replace data with PAAPI/real data later for live prices.
- */
+import { useMemo, useState } from "react";
 
 const AFFILIATE_TAG = "pierre121-20"; // your tag
-const SITE_TITLE = "Pierre Amazon Picks for Best Use";
-const ITEMS_TO_GENERATE = 200;
 
-// seed items to vary categories and product names — we'll use these to generate 200 items
-const SEED = [
-  { title: "Wireless Bluetooth Headphones", category: "Electronics", price: 59.99 },
-  { title: "Smart Fitness Watch", category: "Electronics", price: 79.99 },
-  { title: "Portable Mini Projector", category: "Electronics", price: 139.99 },
-  { title: "Cordless Vacuum Cleaner", category: "Home & Kitchen", price: 99.99 },
-  { title: "Air Fryer 5L", category: "Home & Kitchen", price: 69.99 },
-  { title: "Instant Pot Duo", category: "Home & Kitchen", price: 89.99 },
-  { title: "Electric Toothbrush", category: "Beauty & Health", price: 29.99 },
-  { title: "Waterproof Hiking Backpack", category: "Sports & Outdoors", price: 59.99 },
-  { title: "Foldable Treadmill", category: "Sports & Outdoors", price: 299.99 },
-  { title: "Gaming Keyboard", category: "Electronics", price: 49.99 },
-  { title: "Noise Cancelling Earbuds", category: "Electronics", price: 39.99 },
-  { title: "Robot Vacuum Cleaner", category: "Home & Kitchen", price: 129.99 },
-  { title: "4K Action Camera", category: "Electronics", price: 99.99 },
-  { title: "Ceramic Cookware Set", category: "Home & Kitchen", price: 119.99 },
-  { title: "Portable Power Bank", category: "Electronics", price: 29.99 },
-  { title: "Electric Kettle 1.7L", category: "Home & Kitchen", price: 34.99 },
-  { title: "Foldable Yoga Mat", category: "Sports & Outdoors", price: 24.99 },
-  { title: "Men's Running Shoes", category: "Fashion & Accessories", price: 69.99 },
-  { title: "Women's Casual Sneakers", category: "Fashion & Accessories", price: 59.99 },
-  { title: "Kids Educational Toy Set", category: "Toys & Games", price: 39.99 },
+// 20 placeholder items — replace `asin`, `image` and `price` with real data
+const ITEMS = [
+  { id: 1, title: "Echo Dot (sample)", price: "$49.99", asin: "B07FZ8S74R", category: "Featured", image: "https://images.unsplash.com/photo-1518444020076-f8d5b0b15c38?w=1200&q=80" },
+  { id: 2, title: "Fire TV Stick (sample)", price: "$39.99", asin: "B08XVYZ1Y5", category: "Featured", image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&q=80" },
+  { id: 3, title: "Apple AirPods (sample)", price: "$129.99", asin: "B07PXGQC1Q", category: "Electronics", image: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=1200&q=80" },
+  { id: 4, title: "Kindle Paperwhite (sample)", price: "$139.99", asin: "B07CXG6C9W", category: "Electronics", image: "https://images.unsplash.com/photo-1523475496153-3b0b9b8b6b1f?w=1200&q=80" },
+  { id: 5, title: "Bluetooth Speaker (sample)", price: "$59.99", asin: "B07QK2SPP7", category: "Electronics", image: "https://images.unsplash.com/photo-1518449079324-9d0b3bcd3b1d?w=1200&q=80" },
+  { id: 6, title: "Smart Watch (sample)", price: "$69.99", asin: "B07Y8GZJ2Z", category: "Fitness", image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?w=1200&q=80" },
+  { id: 7, title: "Portable Power Bank (sample)", price: "$29.99", asin: "B07D1X1N3Z", category: "Electronics", image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=1200&q=80" },
+  { id: 8, title: "Robot Vacuum (sample)", price: "$249.99", asin: "B07PGL2ZSL", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1549388604-817d15aa0110?w=1200&q=80" },
+  { id: 9, title: "Air Purifier (sample)", price: "$119.99", asin: "B07G5QWZ3S", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1200&q=80" },
+  { id: 10, title: "Instant Pot (sample)", price: "$89.99", asin: "B00FLYWNYQ", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200&q=80" },
+  { id: 11, title: "Hair Dryer (sample)", price: "$39.99", asin: "B07G9QZYVJ", category: "Beauty & Health", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1200&q=80" },
+  { id: 12, title: "Electric Toothbrush (sample)", price: "$49.99", asin: "B07YFJ1T5Z", category: "Beauty & Health", image: "https://images.unsplash.com/photo-1542736667-069246bdbc76?w=1200&q=80" },
+  { id: 13, title: "Gaming Keyboard (sample)", price: "$59.99", asin: "B07Q2X9QFW", category: "Electronics", image: "https://images.unsplash.com/photo-1526378721945-73d5ef1d7a7c?w=1200&q=80" },
+  { id: 14, title: "Wireless Headphones (sample)", price: "$89.99", asin: "B07Y2J4Q8P", category: "Electronics", image: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&q=80" },
+  { id: 15, title: "Fitness Band (sample)", price: "$29.99", asin: "B07P8M1TLB", category: "Fitness", image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200&q=80" },
+  { id: 16, title: "Coffee Maker (sample)", price: "$79.99", asin: "B07G3R2ZVR", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1200&q=80" },
+  { id: 17, title: "Blender (sample)", price: "$49.99", asin: "B078K3QDF7", category: "Home & Kitchen", image: "https://images.unsplash.com/photo-1547045662-9ec1d86dd9b9?w=1200&q=80" },
+  { id: 18, title: "Action Camera (sample)", price: "$94.99", asin: "B07P9X2F4D", category: "Electronics", image: "https://images.unsplash.com/photo-1519183071298-a2962be90b06?w=1200&q=80" },
+  { id: 19, title: "Portable Projector (sample)", price: "$121.23", asin: "B0897B4P6C", category: "Electronics", image: "https://images.unsplash.com/photo-1531497865140-4a64b0a3b8d7?w=1200&q=80" },
+  { id: 20, title: "Kids Toy (sample)", price: "$19.99", asin: "B07D7P8LQK", category: "Toys & Games", image: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=1200&q=80" }
 ];
 
-// categories / tabs we will show (Featured then the rest)
-const CATEGORY_TABS = [
-  "Featured",
-  "Electronics",
-  "Home & Kitchen",
-  "Beauty & Health",
-  "Toys & Games",
-  "Fashion & Accessories",
-  "Sports & Outdoors",
-  "Trending",
-];
-
-function generateItems(count = ITEMS_TO_GENERATE) {
-  const items = [];
-  for (let i = 0; i < count; i++) {
-    const seed = SEED[i % SEED.length];
-    // create a pseudo ASIN (not real) but formatted like B0 + 8 digits
-    const asin = "B0" + String(10000000 + i).slice(0);
-    const title = `${seed.title} ${Math.floor(i / SEED.length) + 1}`;
-    // price variation small
-    const price = (seed.price * (0.85 + (i % 20) * 0.008)).toFixed(2);
-    // categories: put some items into Trending/Featured by rule
-    const category = seed.category;
-    // placeholder images from via.placeholder (fast) — replace with m.media-amazon.com or PAAPI later
-    const image = `https://via.placeholder.com/420x320?text=${encodeURIComponent(seed.title)}`;
-    // build affiliate link with your tag (US)
-    const affiliateLink = `https://www.amazon.com/dp/${asin}/?tag=${AFFILIATE_TAG}`;
-
-    items.push({
-      id: `item-${i}`,
-      asin,
-      title,
-      category,
-      price,
-      currency: "USD",
-      image,
-      affiliateLink,
-      featured: i < 12, // first 12 = featured
-      trending: (i % 17) === 0,
-    });
-  }
-  return items;
-}
-
-export default function HomePage() {
-  const [tab, setTab] = useState("Featured");
+export default function Home() {
   const [query, setQuery] = useState("");
-  const [items] = useState(() => generateItems(ITEMS_TO_GENERATE));
-  const [visibleCount, setVisibleCount] = useState(30); // load more on scroll / button
+  const [activeCat, setActiveCat] = useState("Featured");
 
-  // derived lists per category and search
+  const categories = useMemo(
+    () => ["Featured", "Electronics", "Home & Kitchen", "Fitness", "Beauty & Health", "Toys & Games"],
+    []
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    let list = items;
-
-    // filter by tab
-    if (tab === "Featured") {
-      list = list.filter((i) => i.featured);
-    } else if (tab === "Trending") {
-      list = list.filter((i) => i.trending);
-    } else {
-      list = list.filter((i) => i.category === tab);
-    }
-
-    // search filter
-    if (q.length > 0) {
-      list = list.filter(
-        (i) =>
-          i.title.toLowerCase().includes(q) ||
-          i.asin.toLowerCase().includes(q)
-      );
-    }
-
-    return list;
-  }, [items, tab, query]);
-
-  useEffect(() => {
-    // reset visible count when switching tabs / search
-    setVisibleCount(30);
-  }, [tab, query]);
-
-  // infinite scroll — load more when near bottom (mobile friendly)
-  useEffect(() => {
-    function onScroll() {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 800) {
-        setVisibleCount((c) => Math.min(c + 30, 2000));
-      }
-    }
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    return ITEMS.filter((it) => {
+      const matchCat = activeCat === "Featured" ? true : it.category === activeCat;
+      const matchQ = !q || it.title.toLowerCase().includes(q);
+      return matchCat && matchQ;
+    });
+  }, [query, activeCat]);
 
   return (
-    <>
-      <Head>
-        <title>{SITE_TITLE}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
+    <div style={styles.page}>
+      <header style={styles.header}>
+        <h1 style={styles.title}>Pierre's Amazon Picks — Best Sellers (Preview)</h1>
+        <div style={styles.searchRow}>
+          <input
+            aria-label="Search products"
+            placeholder="Search items..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            style={styles.search}
+          />
+          <button style={styles.smallBtn} onClick={() => setQuery("")}>Clear</button>
+        </div>
 
-      <div className="store-container">
-        <header className="store-header">
-          <div>
-            <h1>Pierre Amazon Picks for Best Use</h1>
-            <div className="subtitle">Shop best-selling items — curated for you</div>
-          </div>
-
-          <div className="search-wrap">
-            <input
-              aria-label="Search products"
-              placeholder="Search for products, e.g. 'headphones'..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
-        </header>
-
-        <nav className="tabs">
-          {CATEGORY_TABS.map((t) => (
+        <div style={styles.tabs}>
+          {categories.map((c) => (
             <button
-              key={t}
-              className={`tab ${t === tab ? "active" : ""}`}
-              onClick={() => setTab(t)}
+              key={c}
+              onClick={() => setActiveCat(c)}
+              style={activeCat === c ? {...styles.tab, ...styles.tabActive} : styles.tab}
             >
-              {t}
+              {c}
             </button>
           ))}
-        </nav>
+        </div>
+      </header>
 
-        <main>
-          <section className="grid">
-            {filtered.slice(0, visibleCount).map((it) => (
-              <article className="card" key={it.id}>
-                <a href={it.affiliateLink} target="_blank" rel="noreferrer" className="img-link">
-                  <img
-                    src={it.image}
-                    alt={it.title}
-                    loading="lazy"
-                    width="420"
-                    height="320"
-                  />
-                </a>
-
-                <div className="card-body">
-                  <h3 className="title">{it.title}</h3>
-                  <div className="meta">{it.currency} {it.price}</div>
-
-                  <div className="actions">
-                    <a
-                      className="buy-btn"
-                      href={it.affiliateLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Buy Now on Amazon
-                    </a>
-                    <a
-                      className="view-btn"
-                      href={it.affiliateLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Open ${it.title} on Amazon`}
-                    >
-                      View
-                    </a>
+      <main style={styles.container}>
+        <div style={styles.grid}>
+          {filtered.map((p) => {
+            const amazonUrl = `https://www.amazon.com/dp/${p.asin}/?tag=${AFFILIATE_TAG}`;
+            return (
+              <article key={p.id} style={styles.card}>
+                <div style={styles.imgWrap}>
+                  <img src={p.image} alt={p.title} style={styles.img} onError={(e)=>e.target.src='https://via.placeholder.com/600x400?text=No+Image'} />
+                </div>
+                <div style={styles.cardBody}>
+                  <h3 style={styles.prodTitle}>{p.title}</h3>
+                  <div style={styles.price}>{p.price}</div>
+                  <div style={styles.cardBtns}>
+                    <a href={amazonUrl} target="_blank" rel="noopener noreferrer" style={styles.buyBtn}>Buy Now on Amazon</a>
+                    <a href={amazonUrl} target="_blank" rel="noopener noreferrer" style={styles.viewBtn}>View</a>
                   </div>
                 </div>
               </article>
-            ))}
-          </section>
+            );
+          })}
+          {filtered.length === 0 && <p style={{padding:20}}>No items found</p>}
+        </div>
+      </main>
 
-          {filtered.length === 0 && (
-            <div className="empty">No results found.</div>
-          )}
-
-          {filtered.length > visibleCount && (
-            <div className="load-more-wrap">
-              <button onClick={() => setVisibleCount((c) => c + 30)} className="load-more">
-                Load more
-              </button>
-            </div>
-          )}
-        </main>
-
-        <footer className="store-footer">
-          <div>Affiliate tag: <strong>{AFFILIATE_TAG}</strong> — All links include your tracking ID.</div>
-          <div className="small">This demo uses placeholder product data. When you get PAAPI keys I can wire real Amazon data in.</div>
-        </footer>
-      </div>
-
-      <style jsx>{`
-        .store-container {
-          max-width: 1200px;
-          margin: 18px auto;
-          padding: 0 16px 80px;
-          font-family: Inter, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-          color: #111827;
-        }
-        .store-header {
-          display: flex;
-          gap: 16px;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 12px;
-        }
-        .store-header h1 {
-          margin: 0;
-          font-size: 20px;
-        }
-        .subtitle { color: #6b7280; font-size: 13px; margin-top:4px; }
-        .search-wrap input {
-          padding: 10px 12px;
-          border: 1px solid #e5e7eb;
-          border-radius: 8px;
-          width: 300px;
-          max-width: 100%;
-        }
-
-        .tabs {
-          display: flex;
-          gap: 8px;
-          overflow-x: auto;
-          padding: 10px 0;
-          margin-bottom: 12px;
-        }
-        .tab {
-          border: none;
-          padding: 8px 12px;
-          background: #fff;
-          border-radius: 999px;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-          cursor: pointer;
-          color: #374151;
-          font-size: 14px;
-        }
-        .tab.active { background:#111827; color:#fff; }
-
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-          gap: 16px;
-        }
-        .card {
-          background: #fff;
-          border: 1px solid #e6e6e6;
-          border-radius: 10px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          transition: transform .12s ease, box-shadow .12s ease;
-        }
-        .card:hover { transform: translateY(-4px); box-shadow:0 6px 18px rgba(17,24,39,0.08); }
-        .img-link img { width: 100%; height: 180px; object-fit: contain; background: #fafafa; display:block; }
-        .card-body { padding: 12px; display:flex; flex-direction: column; gap:8px; flex:1; }
-        .title { font-size: 14px; margin:0; min-height:40px; color:#111827; }
-        .meta { color:#0b845e; font-weight:600; }
-        .actions { display:flex; gap:8px; margin-top:auto; }
-        .buy-btn {
-          background: #0073e6;
-          color: white;
-          padding: 9px 10px;
-          border-radius: 8px;
-          text-decoration:none;
-          font-weight:600;
-          font-size: 14px;
-        }
-        .view-btn {
-          background: #f3f4f6;
-          color:#111827;
-          padding:9px 10px;
-          border-radius:8px;
-          text-decoration:none;
-          font-size:14px;
-        }
-        .load-more-wrap { text-align:center; margin-top:16px; }
-        .load-more { padding:10px 18px; border-radius:8px; border:1px solid #e5e7eb; background:#fff; cursor:pointer; }
-        .empty { text-align:center; padding:24px; color:#6b7280; }
-        .store-footer { margin-top:20px; color:#6b7280; font-size:13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-
-        /* responsive adjustments */
-        @media (max-width: 640px) {
-          .store-header { flex-direction: column; align-items:flex-start; gap:8px; }
-          .search-wrap input { width:100%; }
-          .img-link img { height:160px; }
-        }
-      `}</style>
-    </>
+      <footer style={styles.footer}>
+        <small>Affiliate tag used: <strong>{AFFILIATE_TAG}</strong>. Replace placeholder ASINs/images with real products.</small>
+      </footer>
+    </div>
   );
 }
+
+const styles = {
+  page: { fontFamily: "Inter, Arial, sans-serif", background: "#f9fafb", minHeight: "100vh", color: "#111" },
+  header: { padding: "28px 20px 8px", textAlign: "center" },
+  title: { margin: 0, fontSize: 22 },
+  searchRow: { marginTop: 12, display: "flex", justifyContent: "center", gap: 8 },
+  search: { width: "60%", maxWidth: 560, padding: "10px 12px", borderRadius: 8, border: "1px solid #ddd" },
+  smallBtn: { padding: "10px 14px", borderRadius: 8, border: "1px solid #ddd", background: "#fff" },
+  tabs: { marginTop: 14, display: "flex", gap: 8, justifyContent: "center", flexWrap: "wrap" },
+  tab: { padding: "8px 14px", borderRadius: 999, border: "1px solid #e6e6e6", background: "#fff" },
+  tabActive: { background: "#111827", color: "#fff", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" },
+
+  container: { padding: "18px 18px 60px" },
+  grid: { display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(260px,1fr))", gap: 16 },
+  card: { background: "#fff", borderRadius: 12, overflow: "hidden", boxShadow: "0 4px 14px rgba(2,6,23,0.06)", display: "flex", flexDirection: "column", minHeight: 300 },
+  imgWrap: { height: 160, background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" },
+  img: { maxWidth: "100%", maxHeight: "100%", objectFit: "cover", width: "100%", height: "100%" },
+  cardBody: { padding: 14, display: "flex", flexDirection: "column", gap: 10, flex: 1 },
+  prodTitle: { fontSize: 16, margin: 0 },
+  price: { color: "#059669", fontWeight: 700 },
+  cardBtns: { marginTop: "auto", display: "flex", gap: 8 },
+  buyBtn: { flex: 1, textAlign: "center", padding: "10px 12px", background: "#0073e6", color: "#fff", borderRadius: 8, textDecoration: "none" },
+  viewBtn: { padding: "10px 12px", background: "#eef2f7", color: "#111", borderRadius: 8, textDecoration: "none", minWidth: 72, textAlign: "center" },
+
+  footer: { textAlign: "center", padding: 20, color: "#6b7280" },
+};
