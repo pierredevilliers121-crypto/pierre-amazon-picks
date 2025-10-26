@@ -31,7 +31,7 @@ const PRODUCTS = [
   {
     id: 5,
     title: "Hydro Flask Wide Mouth Bottle (32 oz)",
-    image: "https://m.media-amazon.com/images/I/61VbKHdE2-L._AC_SX425_.jpg",
+    image: "https://m.media-amazon.com/images/I/41eISRYlWdL._AC_SL1500_.jpg",
     link: `https://www.amazon.com/dp/B0BFYRMHTJ?tag=${AFFILIATE}`,
   },
   {
@@ -43,7 +43,7 @@ const PRODUCTS = [
   {
     id: 7,
     title: "CeraVe Moisturizing Cream (16 oz)",
-    image: "https://m.media-amazon.com/images/I/61fG6nODlFL._AC_SX425_.jpg",
+    image: "https://m.media-amazon.com/images/I/71nl44DpNXL._SX679_.jpg",
     link: `https://www.amazon.com/dp/B00TTD9BRC?tag=${AFFILIATE}`,
   },
   {
