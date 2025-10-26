@@ -7,121 +7,121 @@ const PRODUCTS = [
   {
     id: 1,
     title: "Apple AirPods Pro (2nd Generation)",
-    image: "https://m.media-amazon.com/images/I/617I3mDGmTL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/617I3mDGmTL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B0BDHWDR12?tag=${AFFILIATE}`,
   },
   {
     id: 2,
     title: "Instant Pot Duo 7-in-1 Electric Pressure Cooker",
-    image: "https://m.media-amazon.com/images/I/71xbdrK1vOL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/71xbdrK1vOL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B08PQ2KWHS?tag=${AFFILIATE}`,
   },
   {
     id: 3,
     title: "Kindle Paperwhite (Latest)",
-    image: "https://m.media-amazon.com/images/I/71FWKtSIYUL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/71FWKtSIYUL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B08KTZ8249?tag=${AFFILIATE}`,
   },
   {
     id: 4,
     title: "Lodge Cast Iron Skillet - 10.25 Inch",
-    image: "https://m.media-amazon.com/images/I/61eNv9BXyaL._AC_.jpg",
-    link: `https://www.amazon.com/dp/B00006JSUA?th=1&tag=${AFFILIATE}`,
+    image: "https://m.media-amazon.com/images/I/61eNv9BXyaL._AC_SX425_.jpg",
+    link: `https://www.amazon.com/dp/B00006JSUA?tag=${AFFILIATE}`,
   },
   {
     id: 5,
     title: "Hydro Flask Wide Mouth Bottle (32 oz)",
-    image: "https://m.media-amazon.com/images/I/41eISRYlWdL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/61VbKHdE2-L._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B0BFYRMHTJ?tag=${AFFILIATE}`,
   },
   {
     id: 6,
     title: "Fire TV Stick 4K with Alexa Voice Remote",
-    image: "https://m.media-amazon.com/images/I/61TzK204IjL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/61TzK204IjL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B08XVYZ1Y5?tag=${AFFILIATE}`,
   },
   {
     id: 7,
     title: "CeraVe Moisturizing Cream (16 oz)",
-    image: "https://m.media-amazon.com/images/I/41Kc6H7fboL._AC_.jpg",
-    link: `https://www.amazon.com/dp/B00TTD9BRC?th=1&tag=${AFFILIATE}`,
+    image: "https://m.media-amazon.com/images/I/61fG6nODlFL._AC_SX425_.jpg",
+    link: `https://www.amazon.com/dp/B00TTD9BRC?tag=${AFFILIATE}`,
   },
   {
     id: 8,
     title: "Anker PowerCore 10000 Portable Charger",
-    image: "https://m.media-amazon.com/images/I/61LN69va5IL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/61LN69va5IL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B07DDDF8CNK?tag=${AFFILIATE}`,
   },
   {
     id: 9,
     title: "JBL Flip 6 Portable Bluetooth Speaker",
-    image: "https://m.media-amazon.com/images/I/71DMsp+X-pL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/71DMsp+X-pL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B09GJMPRYW?tag=${AFFILIATE}`,
   },
   {
     id: 10,
     title: "Echo Dot (5th Gen) Smart Speaker with Alexa",
-    image: "https://m.media-amazon.com/images/I/71yRY8YlAbL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/71yRY8YlAbL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B09B8V1LZ3?tag=${AFFILIATE}`,
   },
   {
     id: 11,
     title: "Apple 20W USB-C Power Adapter",
-    image: "https://m.media-amazon.com/images/I/61ViCg5-E-L._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/61ViCg5-E-L._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B0D78SLYB1?tag=${AFFILIATE}`,
   },
   {
     id: 12,
     title: "Samsung EVO Select 128GB microSDXC",
-    image: "https://m.media-amazon.com/images/I/81axmUuRHrL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/81axmUuRHrL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B0887GP791?tag=${AFFILIATE}`,
   },
   {
     id: 13,
     title: "Keurig K-Classic Coffee Maker",
-    image: "https://m.media-amazon.com/images/I/61wQb8IB8UL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/61wQb8IB8UL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B018UQ5AMS?tag=${AFFILIATE}`,
   },
   {
     id: 14,
     title: "Ninja Air Fryer (4 Qt)",
-    image: "https://m.media-amazon.com/images/I/71+8uTMDRFL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/71+8uTMDRFL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B07FDJMC9Q?tag=${AFFILIATE}`,
   },
   {
     id: 15,
     title: "Sony WH-CH510 Wireless On-Ear Headphones",
-    image: "https://m.media-amazon.com/images/I/41H-Lb8rA1L._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/41H-Lb8rA1L._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B07T81554H?tag=${AFFILIATE}`,
   },
   {
     id: 16,
     title: "Fitbit Inspire 2 Health & Fitness Tracker",
-    image: "https://m.media-amazon.com/images/I/51uHD-x+3-L._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/51uHD-x+3-L._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B08DFGWDZR?tag=${AFFILIATE}`,
   },
   {
     id: 17,
     title: "Oxo Good Grips 3-in-1 Avocado Slicer",
-    image: "https://m.media-amazon.com/images/I/51oYsbyhMgL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/51oYsbyhMgL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B0DSTN6X8M?tag=${AFFILIATE}`,
   },
   {
     id: 18,
     title: "Victorinox Swiss Army Classic SD Pocket Knife",
-    image: "https://m.media-amazon.com/images/I/61-heWmCTKL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/61-heWmCTKL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B00020S7XK?tag=${AFFILIATE}`,
   },
   {
     id: 19,
     title: "Calphalon Nonstick Cookware Set (12-Piece)",
-    image: "https://m.media-amazon.com/images/I/61nIgS-dfJL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/61nIgS-dfJL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B0D9HYM4Y4?tag=${AFFILIATE}`,
   },
   {
     id: 20,
     title: "LEGO Star Wars: The Mandalorian The Razor Crest",
-    image: "https://m.media-amazon.com/images/I/81gnlmQ5NUL._AC_.jpg",
+    image: "https://m.media-amazon.com/images/I/81gnlmQ5NUL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B0849GQSC7?tag=${AFFILIATE}`,
   },
 ];
@@ -136,8 +136,10 @@ export default function Home() {
 
       <div className="page">
         <header className="header">
-          <h1>Pierre's Top Picks</h1>
-          <p className="sub">Thanks for supporting me — shop top-selling items</p>
+          <div>
+            <h1>Pierre's Top Picks</h1>
+            <p className="sub">Thanks for supporting me — shop top-selling items</p>
+          </div>
         </header>
 
         <main className="content">
@@ -153,15 +155,11 @@ export default function Home() {
                     />
                   </div>
                 </a>
+
                 <div className="cardFooter">
                   <div className="title">{p.title}</div>
                   <div className="actions">
-                    <a
-                      href={p.link}
-                      className="buy"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={p.link} className="buy" target="_blank" rel="noopener noreferrer">
                       Buy on Amazon
                     </a>
                   </div>
@@ -172,12 +170,116 @@ export default function Home() {
         </main>
 
         <footer className="footer">
-          <p>Thanks for supporting my Amazon affiliate marketing platform.</p>
+          <div>Thanks for supporting my Amazon affiliate marketing platform.</div>
           <div className="small">
             Affiliate tag: <strong>{AFFILIATE}</strong> — links open on Amazon US.
           </div>
         </footer>
       </div>
+
+      <style jsx>{`
+        .page {
+          min-height: 100vh;
+          background: #f6f7fb;
+          color: #111827;
+          font-family: Inter, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+          padding: 18px;
+        }
+        .header {
+          max-width: 1100px;
+          margin: 0 auto 18px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .header h1 {
+          margin: 0;
+          font-size: 22px;
+        }
+        .sub {
+          margin: 6px 0 0;
+          color: #6b7280;
+          font-size: 13px;
+        }
+        .content {
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+          gap: 14px;
+        }
+        .card {
+          background: #fff;
+          border-radius: 10px;
+          overflow: hidden;
+          border: 1px solid #e6e9ef;
+          display: flex;
+          flex-direction: column;
+          transition: transform 140ms ease, box-shadow 140ms ease;
+        }
+        .card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+        }
+        .imgWrap {
+          background: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 160px; /* smaller image height */
+          padding: 10px;
+        }
+        .imgWrap img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+        }
+        .cardFooter {
+          padding: 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          align-items: center;
+        }
+        .title {
+          font-size: 14px;
+          text-align: center;
+          color: #111827;
+          min-height: 36px;
+          overflow: hidden;
+        }
+        .actions {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        .buy {
+          display: inline-block;
+          text-align: center;
+          padding: 9px 12px;
+          border-radius: 8px;
+          background: #ffbf00;
+          color: #111;
+          font-weight: 700;
+          text-decoration: none;
+          width: 100%;
+          max-width: 220px;
+        }
+        .footer {
+          max-width: 1100px;
+          margin: 26px auto 40px;
+          text-align: center;
+          color: #6b7280;
+          font-size: 13px;
+        }
+        .small {
+          margin-top: 6px;
+          color: #9ca3af;
+          font-size: 12px;
+        }
+      `}</style>
     </>
   );
 }
