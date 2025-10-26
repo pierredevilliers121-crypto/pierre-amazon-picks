@@ -108,7 +108,7 @@ const PRODUCTS = [
   },
   {
     id: 18,
-    title: "Victorinox Swiss Army Classic SD Pocket Knife",
+    title: "Sony ICF-S10MK2 Pocket AM/FM Radio",
     image: "https://m.media-amazon.com/images/I/61-heWmCTKL._AC_SX425_.jpg",
     link: `https://www.amazon.com/dp/B00020S7XK?tag=${AFFILIATE}`,
   },
