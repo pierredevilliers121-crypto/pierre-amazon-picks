@@ -8,7 +8,7 @@ const PRODUCTS = [
   {
     id: 1,
     title: "Apple AirPods Pro (2nd Generation)",
-    image: "https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SL1500_.jpg",
+    image: "https://m.media-amazon.com/images/I/71xbdrK1vOL._AC_AIweblab1006854,T4_FMavif_SF700,700_PQ69_.jpg?aicid=detailPage-mediaBlock",
     link: `https://www.amazon.com/dp/B0BDHWDR12/?tag=${AFFILIATE}`,
   },
   {
